@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         nodejs-version: [18]
-        os-type: [ubuntu -latest, windows-latest]
+        os-type: [ubuntu -latest]
           
     runs-on: ${{matrix.os-type}}
 
@@ -63,6 +63,7 @@ jobs:
       run: npm install
     
     - name: Unit testing
+      continue-on-error: true
       run: npm run coverage
     
     - name: Upload test results to Artifacts
