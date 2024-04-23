@@ -1,4 +1,4 @@
-name: Solar System - Unit test
+name: Solar System - Code coverage
 
 on:
   workflow_dispatch:
@@ -44,6 +44,33 @@ jobs:
       with: 
         name: mocha-test-result
         path: test-results.xml
+
+  code-coverage:
+          
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout action
+      uses: actions/checkout@v3
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    # - run: npm ci
+    - name: Install Dependencies
+      run: npm install
+    
+    - name: Unit testing
+      run: npm run coverage
+    
+    - name: Upload test results to Artifacts
+      uses: actions/upload-artifact@v4
+      with: 
+        name: code-coverage-result
+        path: coverage
+        retention-days: 5
     
     
 
