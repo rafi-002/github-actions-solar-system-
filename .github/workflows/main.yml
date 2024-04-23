@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         nodejs-version: [18]
-        os-type: [ubuntu -latest]
+        os-type: [ubuntu-latest]
           
     runs-on: ${{matrix.os-type}}
 
@@ -37,9 +37,11 @@ jobs:
       run: npm install
     
     - name: Unit testing
+      id: mocha-test
       run: npm test
     
     - name: Upload test results to Artifacts
+      if: failure()
       uses: actions/upload-artifact@v4
       with: 
         name: mocha-test-result
