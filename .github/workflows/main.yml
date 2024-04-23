@@ -18,9 +18,9 @@ jobs:
 
     strategy:
       matrix:
-        nodejs-version: [18,19,20]
+        nodejs-version: [18]
         os-type: [ubuntu -latest, windows-latest]
-
+          
     runs-on: ${{matrix.os-type}}
 
     steps:
