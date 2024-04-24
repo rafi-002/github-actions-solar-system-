@@ -18,8 +18,11 @@ jobs:
 
     strategy:
       matrix:
-        nodejs-version: [18]
-        os-type: [ubuntu-latest]
+        nodejs-version: [18,20]
+        os-type: [ubuntu-latest,windows-latest]
+        exclude: 
+          - os-type: windows-latest
+            nodejs-version: 18
           
     runs-on: ${{matrix.os-type}}
 
