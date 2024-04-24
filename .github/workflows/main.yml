@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         nodejs-version: [18,20]
-        os-type: [ubuntu-latest,windows-latest]
+        os-type: [ubuntu-latest,macos-latest]
         exclude: 
           - os-type: windows-latest
             nodejs-version: 18
