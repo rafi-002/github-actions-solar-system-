@@ -21,7 +21,7 @@ jobs:
         nodejs-version: [18,20]
         os-type: [ubuntu-latest,macos-latest]
         exclude: 
-          - os-type: windows-latest
+          - os-type: macos-latest
             nodejs-version: 18
           
     runs-on: ${{matrix.os-type}}
@@ -47,7 +47,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with: 
-        name: mocha-test-result
+        name: ${{matrix.os-type}}-mocha-test-result
         path: test-results.xml
 
   code-coverage:
