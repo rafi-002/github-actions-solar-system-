@@ -42,6 +42,11 @@ jobs:
     - name: Unit testing
       id: mocha-test
       run: npm test
+
+    - name: Get npm cache directory
+      id: npm-cache-dir
+      shell: bash
+      run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
     
     - name: Upload test results to Artifacts
       if: always()
