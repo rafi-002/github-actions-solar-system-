@@ -104,6 +104,13 @@ jobs:
         username: ${{vars.DOCKERHUB_USERNAME}}
         password: ${{secrets.DOCKERHUB_PASSWORD}}
 
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Docker Build For Testing
       uses: docker/build-push-action@v4
       with:
@@ -132,4 +139,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{vars.DOCKERHUB_USERNAME}}/solar-system:${{github.sha}} ## used for versioning the docker image
+        tags: |
+          ${{vars.DOCKERHUB_USERNAME}}/solar-system:${{github.sha}}
+          ghcr.io/${{github.repository_owner}}/my-solar-system:${{github.sha}}
+
