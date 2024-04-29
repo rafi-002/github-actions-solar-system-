@@ -26,7 +26,6 @@ jobs:
         os-type: [ubuntu-latest,macos-latest]
         exclude: 
           - os-type: macos-latest
-            nodejs-version: 18  
           - os-type: ubuntu-latest
             nodejs-version: 18
           
