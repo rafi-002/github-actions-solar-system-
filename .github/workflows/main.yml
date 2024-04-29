@@ -7,14 +7,18 @@ on:
   # pull_request:
   #   branches: [ "main" ]
 
-env:
-  MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-  MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
-  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}     
-
-  
+     
 jobs:
   unit-testing:
+    services:
+      mongo-db:
+        image: siddharth67/mongo-db:non-prod
+        ports:
+          - 27017:27017
+    env:
+      MONGO_URI: 'mongodb//localhost:27017/superData'
+      MONGO_USERNAME: non-prod-user
+      MONGO_PASSWORD: non-prod-password
 
     strategy:
       matrix:
@@ -68,7 +72,6 @@ jobs:
   code-coverage:
           
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout action
       uses: actions/checkout@v3
