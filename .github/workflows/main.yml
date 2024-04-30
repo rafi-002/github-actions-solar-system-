@@ -170,7 +170,7 @@ jobs:
 
       - name: Check kubectl version
         run: |
-          kubectl version --short
+          kubectl version 
           echo --------------------
           kubectl get nodes
 
